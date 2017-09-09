@@ -1,0 +1,51 @@
+[submodule "trellis-webac"]
+	path = trellis-webac
+	url = https://github.com/trellis-ldp/trellis-webac.git
+[submodule "trellis-http"]
+	path = trellis-http
+	url = https://github.com/trellis-ldp/trellis-http.git
+[submodule "trellis-binary"]
+	path = trellis-binary
+	url = https://github.com/trellis-ldp/trellis-binary.git
+[submodule "trellis-api"]
+	path = trellis-api
+	url = https://github.com/trellis-ldp/trellis-api.git
+[submodule "trellis-spi"]
+	path = trellis-spi
+	url = https://github.com/trellis-ldp/trellis-spi.git
+[submodule "trellis-vocabulary"]
+	path = trellis-vocabulary
+	url = https://github.com/trellis-ldp/trellis-vocabulary.git
+[submodule "trellis-ontology"]
+	path = trellis-ontology
+	url = https://github.com/trellis-ldp/trellis-ontology.git
+[submodule "trellis-agent"]
+	path = trellis-agent
+	url = https://github.com/trellis-ldp/trellis-agent.git
+[submodule "trellis-amqp"]
+	path = trellis-amqp
+	url = https://github.com/trellis-ldp/trellis-amqp.git
+[submodule "trellis-constraint-rules"]
+	path = trellis-constraint-rules
+	url = https://github.com/trellis-ldp/trellis-constraint-rules.git
+[submodule "trellis-id"]
+	path = trellis-id
+	url = https://github.com/trellis-ldp/trellis-id.git
+[submodule "trellis-io-jena"]
+	path = trellis-io-jena
+	url = https://github.com/trellis-ldp/trellis-io-jena.git
+[submodule "trellis-jms"]
+	path = trellis-jms
+	url = https://github.com/trellis-ldp/trellis-jms.git
+[submodule "trellis-kafka"]
+	path = trellis-kafka
+	url = https://github.com/trellis-ldp/trellis-kafka.git
+[submodule "trellis-namespaces"]
+	path = trellis-namespaces
+	url = https://github.com/trellis-ldp/trellis-namespaces.git
+[submodule "trellis-rosid-file"]
+	path = trellis-rosid-file
+	url = https://github.com/trellis-ldp/trellis-rosid-file.git
+[submodule "trellis-rosid-common"]
+	path = trellis-rosid-common
+	url = https://github.com/trellis-ldp/trellis-rosid-common.git

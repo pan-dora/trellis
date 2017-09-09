@@ -1,0 +1,117 @@
+buildscript {
+
+}
+
+plugins {
+    id 'com.palantir.docker' version '0.13.0'
+}
+
+ext {
+    vendor = 'pandorasystems'
+    homepage = 'http://www.trellisldp.org'
+    docURL = 'http://www.trellisldp.org/apidocs'
+    license = 'Apache 2'
+}
+
+configure(allprojects) { project ->
+    apply plugin: 'maven'
+    apply plugin: 'osgi'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+    apply plugin: 'checkstyle'
+    apply plugin: 'jacoco'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        // TODO -- remove this after the first release of the API
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+        maven {
+            url "http://clojars.org/repo/"
+        }
+    }
+
+    ext.activeMqVersion = "5.15.0"
+    ext.amqpClientVersion = "4.2.0"
+    ext.ariesVersion = "1.0.8"
+    ext.cheshireVersion = "5.8.0"
+    ext.clojureVersion = "1.8.0"
+    ext.commonsIoVersion = "2.5"
+    ext.commonsLangVersion = "3.5"
+    ext.commonsCsvVersion = "1.4"
+    ext.commonsCodecVersion = "1.10"
+    ext.commonsRdfJenaVersion = "0.3.0-incubating"
+    ext.commonsRdfApiVersion = "0.4.0-SNAPSHOT"
+    ext.commonsRdfSimpleVersion = "0.4.0-SNAPSHOT"
+    ext.curatorVersion = "4.0.0"
+    ext.curatorFrameworkVersion = "4.0.1-SNAPSHOT"
+    ext.dexxcollectionVersion = "0.6"
+    ext.errorproneVersion = "2.1.2-SNAPSHOT"
+    ext.guavaVersion = "20.0"
+    ext.httpclientVersion = "4.5.3"
+    ext.httpcoreVersion = "4.4.6"
+    ext.jacksonVersion = "2.9.0"
+    ext.javaxJsonApiVersion = "1.1"
+    ext.jaxWsRsApiVersion = "2.0.1"
+    ext.jenaVersion = "3.4.0"
+    ext.jsonldVersion = "0.11.1"
+    ext.kafkaClientsVersion = "1.0.0-SNAPSHOT"
+    ext.lz4Version = "1.3.0"
+    ext.metricsVersion = "3.2.4"
+    ext.mustacheCompilerVersion = "0.9.5"
+    ext.thriftVersion = "0.9.3"
+
+
+    processResources {
+        filesNotMatching(["**/*.sh", "**/*.jar"]) {
+            expand(project.properties)
+        }
+    }
+
+    def dockerResourceDir = "${rootProject.buildDir}/resources/main/docker"
+
+    docker {
+        name "${vendor}/trellisldp"
+        tags "${version}"
+        dockerfile file("${dockerResourceDir}/Dockerfile")
+        files "${dockerResourceDir}/cfg","${dockerResourceDir}/lib"
+        copySpec.from("${buildDir}/maven").into("${mavenInstallPath}")
+        pull true
+        noCache true
+    }
+
+    def homeDir = System.getProperty('user.home')
+    def mavenLocal = new File(homeDir, ".m2/${mavenInstallPath}")
+
+    task copyTask(type: Copy) {
+        from mavenLocal
+        into "${rootProject.buildDir}/maven"
+    }
+    copyTask.dependsOn install
+}
+
+configurations {
+    buildToolsConfig
+}
+
+dependencies {
+    buildToolsConfig 'org.trellisldp:trellis-build-tools:0.2.0'
+}
+
+task processBuildTools(type: Copy) {
+    from {
+        configurations.buildToolsConfig.collect {
+            zipTree(it).matching {
+                include 'checkstyle/*.xml'
+                include 'license/*.txt'
+            }
+        }
+    }
+    into 'build'
+}
+
+checkstyleMain.dependsOn processBuildTools

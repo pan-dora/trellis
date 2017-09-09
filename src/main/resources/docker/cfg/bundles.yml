@@ -1,0 +1,30 @@
+bundle:install -s \
+mvn:com.github.andrewoma.dexx/collection/${dexxcollectionVersion} \
+mvn:com.github.jsonld-java/jsonld-java/${jsonldVersion} \
+mvn:com.google.guava/guava/${guavaVersion} \
+mvn:com.rabbitmq/amqp-client/${amqpClientVersion} \
+mvn:com.fasterxml.jackson.core/jackson-annotations/${jacksonVersion} \
+mvn:com.fasterxml.jackson.core/jackson-core/${jacksonVersion} \
+mvn:com.fasterxml.jackson.core/jackson-databind/${jacksonVersion} \
+mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/${jacksonVersion} \
+mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-smile/${jacksonVersion} \
+mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jacksonVersion} \
+mvn:commons-codec/commons-codec/${commonsCodecVersion} \
+mvn:commons-io/commons-io/${commonsIoVersion} \
+mvn:io.dropwizard.metrics/metrics-annotation/${metricsVersion} \
+mvn:javax.ws.rs/javax.ws.rs-api/${jaxWsRsApiVersion} \
+mvn:javax.json/javax.json-api/${javaxJsonApiVersion} \
+mvn:net.jpountz.lz4/lz4/${lz4Version} \
+mvn:org.apache.aries.spifly/org.apache.aries.spifly.dynamic.bundle/${ariesVersion} \
+mvn:org.apache.curator/curator-client/${curatorVersion} \
+mvn:org.apache.curator/curator-recipes/${curatorVersion} \
+mvn:org.apache.commons/commons-csv/${commonsCsvVersion} \
+mvn:org.apache.commons/commons-lang3/${commonsLangVersion} \
+mvn:org.apache.commons/commons-rdf-jena/${commonsRdfJenaVersion} \
+mvn:org.apache.httpcomponents/httpclient-osgi/${httpclientVersion} \
+mvn:org.apache.httpcomponents/httpcore-osgi/${httpcoreVersion} \
+mvn:org.apache.jena/jena-osgi/${jenaVersion} \
+mvn:org.apache.thrift/libthrift/${thriftVersion} \
+wrap:mvn:com.github.spullara.mustache.java/compiler/${mustacheCompilerVersion} \
+wrap:mvn:org.clojure/clojure/${clojureVersion} \
+wrap:https://clojars.org/repo/cheshire/cheshire/${cheshireVersion}/cheshire-${cheshireVersion}.jar
