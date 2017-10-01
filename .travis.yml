@@ -12,5 +12,7 @@ addons:
   - oraclejdk8
   - oraclejdk9
 
+install: true
+
 script:
 - ./gradlew build copyTask docker
