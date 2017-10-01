@@ -8,9 +8,9 @@ addons:
     packages:
       - oracle-java8-installer
       - oracle-java9-installer
-  jdk:
-  - oraclejdk8
-  - oraclejdk9
+jdk:
+- oraclejdk8
+- oraclejdk9
 
 install: true
 
