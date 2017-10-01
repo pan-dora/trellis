@@ -1,5 +1,4 @@
 buildscript {
-
 }
 
 plugins {
@@ -65,7 +64,6 @@ configure(allprojects) { project ->
     ext.mustacheCompilerVersion = "0.9.5"
     ext.thriftVersion = "0.9.3"
 
-
     processResources {
         filesNotMatching(["**/*.sh", "**/*.jar"]) {
             expand(project.properties)
@@ -94,6 +92,12 @@ configure(allprojects) { project ->
     copyTask.dependsOn install
 }
 
+configure(subprojects) { subproject ->
+    task deleteSubprojectFiles(type: Delete) {
+        delete "${projectDir}/settings.gradle", "${projectDir}/docs"
+    }
+}
+
 configurations {
     buildToolsConfig
 }
@@ -112,6 +116,12 @@ task processBuildTools(type: Copy) {
         }
     }
     into 'build'
+}
+
+task submoduleUpdate(type: Exec) {
+    description = 'Updates and merges submodules'
+    executable = 'git'
+    args = ['submodule','update','--remote','--merge']
 }
 
 checkstyleMain.dependsOn processBuildTools

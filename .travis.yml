@@ -1,0 +1,16 @@
+language: java
+sudo: required
+dist: trusty
+group: edge
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      - oracle-java9-installer
+  jdk:
+  - oraclejdk8
+  - oraclejdk9
+
+script:
+- ./gradlew build copyTask docker
