@@ -49,3 +49,9 @@
 [submodule "trellis-rosid-common"]
 	path = trellis-rosid-common
 	url = https://github.com/trellis-ldp/trellis-rosid-common.git
+[submodule "trellis-app"]
+	path = trellis-app
+	url = https://github.com/trellis-ldp/trellis-app.git
+[submodule "trellis-rosid-file-streaming"]
+	path = trellis-rosid-file-streaming
+	url = https://github.com/trellis-ldp/trellis-rosid-file-streaming.git
