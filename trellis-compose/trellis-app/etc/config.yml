@@ -34,7 +34,7 @@ zookeeper:
     ensembleServers: zoo1:2181
 
 kafka:
-    bootstrapServers: kafka:9092
+    bootstrapServers: kafka:9094
 
 auth:
     webac:
@@ -54,3 +54,4 @@ cors:
         - "*"
     maxAge: 180
 
+async: true

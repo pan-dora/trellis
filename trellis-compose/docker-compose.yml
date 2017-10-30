@@ -1,4 +1,4 @@
-version: "2.1"
+version: "3.2"
 
 services:
   zoo1:
@@ -8,20 +8,32 @@ services:
     hostname: zoo1
     ports:
        - "2181:2181"
+
   kafka:
     image: trellisldp/kafka
     container_name: kafka
     ports:
-      - "9092:9092"
+      - target: 9094
+        published: 9094
+        protocol: tcp
+        mode: host
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 192.168.0.5
+      HOSTNAME_COMMAND: "ifconfig|grep inet|head -1|sed 's/\\:/ /'|awk '{print $$3}'"
       KAFKA_ZOOKEEPER_CONNECT: zoo1:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_ADVERTISED_PROTOCOL_NAME: OUTSIDE
+      KAFKA_ADVERTISED_PORT: 9094
+      KAFKA_PROTOCOL_NAME: INSIDE
+      KAFKA_PORT: 9092
+    volumes:
+      - kafka-data-volume:/kafka
 
   trellis:
     image: trellisldp/trellis-app:0.1.0
     container_name: trellis
     ports:
       - "8080:8080"
+      - "8081:8081"
     volumes:
       - trellis-data-volume:/var/lib/trellis
 
@@ -33,5 +45,12 @@ services:
 
 volumes:
   trellis-data-volume:
-
-
+    driver_opts:
+      type: none
+      device: /mnt/trellis-data
+      o: bind
+  kafka-data-volume:
+    driver_opts:
+      type: none
+      device: /mnt/kafka-data
+      o: bind
