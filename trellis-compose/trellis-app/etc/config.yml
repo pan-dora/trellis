@@ -54,3 +54,4 @@ cors:
         - "*"
     maxAge: 180
 
+async: true
