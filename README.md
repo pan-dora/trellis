@@ -1,6 +1,6 @@
 ## trellis-deployment
 
-[![Build Status](https://travis-ci.org/trellis-ldp/trellis-docker-karaf.png?branch=master)](https://travis-ci.org/trellis-ldp/trellis-docker-karaf)
+[![Build Status](https://travis-ci.org/trellis-ldp/trellis-deployment.png?branch=master)](https://travis-ci.org/trellis-ldp/trellis-deployment)
 
 This provides composite deployments for Trellis application modules.  
 
@@ -8,11 +8,11 @@ This provides composite deployments for Trellis application modules.
 
 ## docker images
 
-* [`trellis-app`](trellis-app)  - Provides the Trellis Application.
+* [`trellis-app`](https://github.com/trellis-ldp/trellis-app/tree/master)  - Provides the Trellis Application.
 
 [![](https://images.microbadger.com/badges/image/trellisldp/trellis-app.svg)](https://microbadger.com/images/trellisldp/trellis-app "trellisldp/trellis-app")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-app.svg)](https://microbadger.com/images/trellisldp/trellis-app "trellisldp/trellis-app")
 
-* [`trellis-processing`](trellis-rosid-file-streaming)  - Provides a Beam async processor.
+* [`trellis-processing`](https://github.com/trellis-ldp/trellis-rosid-file-streaming/tree/master)  - Provides a Beam async processor.
 
 [![](https://images.microbadger.com/badges/image/trellisldp/trellis-processing.svg)](https://microbadger.com/images/trellisldp/trellis-processing "trellisldp/trellis-processing")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-processing.svg)](https://microbadger.com/images/trellisldp/trellis-processing "trellisldp/trellis-processing")
 
