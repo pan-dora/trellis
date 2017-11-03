@@ -43,6 +43,10 @@ services:
         published: 9094
         protocol: tcp
         mode: host
+      - target: 1099
+        published: 1099
+        protocol: tcp
+        mode: host
     environment:
       HOSTNAME_COMMAND: "ifconfig|grep inet|head -1|sed 's/\\:/ /'|awk '{print $$3}'"
       KAFKA_ZOOKEEPER_CONNECT: zoo1:2181
@@ -51,8 +55,21 @@ services:
       KAFKA_ADVERTISED_PORT: 9094
       KAFKA_PROTOCOL_NAME: INSIDE
       KAFKA_PORT: 9092
+      KAFKA_JMX_OPTS: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka -Dcom.sun.management.jmxremote.rmi.port=1099"
+      JMX_PORT: 1099
     volumes:
       - kafka-data-volume:/kafka
+
+  burrow:
+    image: trellisldp/burrow:0.1.0
+    container_name: burrow
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./burrow/cfg:/etc/burrow/
+    depends_on:
+      - kafka
+    restart: always
 
   trellis:
     image: trellisldp/trellis-app:0.1.0
