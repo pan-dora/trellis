@@ -1,0 +1,28 @@
+version: "3.2"
+
+services:
+  druid:
+    image: trellisldp/druid:0.10.1
+    container_name: druid
+    ports:
+      - "3000:8082"
+      - "3001:8081"
+    networks:
+      - trelliscompose_default
+
+  tranquility:
+    image: trellisldp/tranquility:0.8.2
+    container_name: tranquility
+    ports:
+      - "8200:8200"
+    volumes:
+      - ./tranquility/conf/tranquility:/etc/tranquility
+    environment:
+      TRANQUILITY_CONFIG_FILE: /etc/tranquility/kafka.json
+      TRANQUILITY_PROPERTIES_ZOOKEEPER_CONNECT: druid:2181
+    networks:
+      - trelliscompose_default
+
+networks:
+  trelliscompose_default:
+    external: true

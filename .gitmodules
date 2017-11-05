@@ -55,3 +55,6 @@
 [submodule "trellis-rosid-file-streaming"]
 	path = trellis-rosid-file-streaming
 	url = https://github.com/trellis-ldp/trellis-rosid-file-streaming.git
+[submodule "camel-ldp"]
+	path = camel-ldp
+	url = https://github.com/trellis-ldp/camel-ldp.git

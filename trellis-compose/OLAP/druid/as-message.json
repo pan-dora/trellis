@@ -1,0 +1,17 @@
+{
+  "id": "urn:uuid:300f1e85-f95d-489a-b3cc-779e9ee78ccb",
+  "type": [
+    "Create",
+    "http://www.w3.org/ns/prov#Activity"
+  ],
+  "actor": [
+    "http://www.trellisldp.org/ns/trellis#AnonymousUser"
+  ],
+  "object": {
+    "id": "http://trellis:8080/repository/test/2",
+    "type": [
+      "http://www.w3.org/ns/ldp#NonRDFSource"
+    ]
+  },
+  "@context": "https://www.w3.org/ns/activitystreams"
+}

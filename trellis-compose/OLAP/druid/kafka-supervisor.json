@@ -1,0 +1,80 @@
+{
+  "type": "kafka",
+  "dataSchema": {
+    "dataSource": "trellis-event",
+    "parser": {
+      "type": "string",
+      "parseSpec": {
+        "format": "json",
+        "flattenSpec": {
+          "useFieldDiscovery": true,
+          "fields": [
+            {
+              "type": "root",
+              "name": "id"
+            },
+            {
+              "type": "path",
+              "name": "type",
+              "expr": "$.type[0]"
+            },
+            {
+              "type": "path",
+              "name": "type-2",
+              "expr": "$.type[2]"
+            },
+            {
+              "type": "path",
+              "name": "actor",
+              "expr": "$.actor[0]"
+            },
+            {
+              "type": "path",
+              "name": "object.id",
+              "expr": "$.object.id"
+            },
+            {
+              "type": "path",
+              "name": "object.type",
+              "expr": "$.object.type[0]"
+            }
+          ]
+        },
+        "dimensionsSpec": {
+          "dimensions": [],
+          "dimensionsExclusions": [
+            "@context"
+          ]
+        },
+        "timestampSpec": {
+          "format": "auto",
+          "column": "timestamp"
+        }
+      }
+    },
+    "metricsSpec": [
+      {
+        "type": "count",
+        "name": "count"
+      }
+    ],
+    "granularitySpec": {
+      "type": "uniform",
+      "segmentGranularity": "HOUR",
+      "queryGranularity": "NONE"
+    }
+  },
+  "tuningConfig": {
+    "type": "kafka",
+    "maxRowsPerSegment": 5000000
+  },
+  "ioConfig": {
+    "topic": "trellis.event",
+    "consumerProperties": {
+      "bootstrap.servers": "kafka:9094"
+    },
+    "taskCount": 1,
+    "replicas": 1,
+    "taskDuration": "PT1H"
+  }
+}
