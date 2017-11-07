@@ -58,3 +58,9 @@
 [submodule "camel-ldp"]
 	path = camel-ldp
 	url = https://github.com/trellis-ldp/camel-ldp.git
+[submodule "trellis-event-serialization"]
+	path = trellis-event-serialization
+	url = https://github.com/trellis-ldp/trellis-event-serialization.git
+[submodule "trellis-audit"]
+	path = trellis-audit
+	url = https://github.com/trellis-ldp/trellis-audit.git

@@ -1,5 +1,7 @@
 FROM openjdk:8-jre-alpine
-MAINTAINER Russell Snyder <ru.snyder@gmail.com>
+
+MAINTAINER Christopher Johnson <christopher_hanna.johnson@uni-leipzig.de>
+LABEL description = "Provides a Tranquility"
 
 # Java config
 ENV TRANQUILITY_VERSION                         0.8.2

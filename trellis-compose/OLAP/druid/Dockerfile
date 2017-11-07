@@ -1,6 +1,8 @@
 FROM ubuntu:16.04
 
-# Set version and github repo which you want to build from
+MAINTAINER Christopher Johnson <christopher_hanna.johnson@uni-leipzig.de>
+LABEL description = "Provides Druid"
+
 ENV GITHUB_OWNER druid-io
 ENV DRUID_VERSION 0.10.1
 ENV ZOOKEEPER_VERSION 3.4.9
@@ -39,6 +41,9 @@ RUN adduser --system --group --no-create-home druid \
 
 # Druid (from source)
 RUN mkdir -p /usr/local/druid/lib
+
+RUN mkdir -p /usr/local/druid/conf
+COPY conf/* /usr/local/druid/conf/
 
 # trigger rebuild only if branch changed
 ADD https://api.github.com/repos/$GITHUB_OWNER/druid/git/refs/heads/$DRUID_VERSION druid-version.json

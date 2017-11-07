@@ -51,7 +51,9 @@ public final class MessageConsumerClient {
                         + "&seekTo={{consumer.seekTo}}" + "&groupId={{consumer.group}}")
                         .routeId("FromKafka")
                         .unmarshal().json(JsonLibrary.Jackson)
-                        .process(new ActivityStreamProcessor()).log("${body}");
+                        .process(new ActivityStreamProcessor())
+                        .marshal().json(JsonLibrary.Jackson, true)
+                        .to("file://{{serialization.log}}");
             }
         });
         camelContext.start();

@@ -11,8 +11,9 @@
           "fields": [
             {
               "type": "root",
-              "name": "id"
+              "name": "@context"
             },
+            "id",
             {
               "type": "path",
               "name": "type",
@@ -21,7 +22,7 @@
             {
               "type": "path",
               "name": "type-2",
-              "expr": "$.type[2]"
+              "expr": "$.type[1]"
             },
             {
               "type": "path",
@@ -48,14 +49,15 @@
         },
         "timestampSpec": {
           "format": "auto",
-          "column": "timestamp"
+          "column": "published"
         }
       }
     },
     "metricsSpec": [
       {
         "type": "count",
-        "name": "count"
+        "name": "count",
+        "fieldName": "id"
       }
     ],
     "granularitySpec": {

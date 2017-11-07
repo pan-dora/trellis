@@ -1,77 +1,92 @@
 {
-  "dataSources" : {
-    "trellis-event" : {
-      "spec" : {
-        "dataSchema" : {
-          "dataSource" : "trellis-event",
-          "parser" : {
-            "type" : "string",
-            "parseSpec" : {
-              "timestampSpec" : {
-                "column" : "timestamp",
-                "format" : "auto"
-              },
-              "dimensionsSpec" : {
-                "dimensions" : [],
-                "dimensionExclusions" : [
-                  "timestamp",
-                  "value"
+  "dataSources": [
+    {
+      "spec": {
+        "dataSchema": {
+          "granularitySpec": {
+            "type": "uniform",
+            "segmentGranularity": "HOUR",
+            "queryGranularity": "NONE"
+          },
+          "dataSource": "trellis-event",
+          "parser": {
+            "type": "string",
+            "parseSpec": {
+              "format": "json",
+              "flattenSpec": {
+                "useFieldDiscovery": true,
+                "fields": [
+                  {
+                    "type": "root",
+                    "name": "@context"
+                  },
+                  "id",
+                  {
+                    "type": "path",
+                    "name": "type",
+                    "expr": "$.type[0]"
+                  },
+                  {
+                    "type": "path",
+                    "name": "type-2",
+                    "expr": "$.type[1]"
+                  },
+                  {
+                    "type": "path",
+                    "name": "actor",
+                    "expr": "$.actor[0]"
+                  },
+                  {
+                    "type": "path",
+                    "name": "object.id",
+                    "expr": "$.object.id"
+                  },
+                  {
+                    "type": "path",
+                    "name": "object.type",
+                    "expr": "$.object.type[0]"
+                  }
                 ]
               },
-              "format" : "json"
+              "dimensionsSpec": {
+                "dimensions": [],
+                "dimensionsExclusions": [
+                  "@context"
+                ]
+              },
+              "timestampSpec": {
+                "format": "auto",
+                "column": "timestamp"
+              }
             }
           },
-          "granularitySpec" : {
-            "type" : "uniform",
-            "segmentGranularity" : "hour",
-            "queryGranularity" : "none"
-          },
-          "metricsSpec" : [
+          "metricsSpec": [
             {
-              "type" : "count",
-              "name" : "count"
-            },
-            {
-              "name" : "value_sum",
-              "type" : "doubleSum",
-              "fieldName" : "value"
-            },
-            {
-              "fieldName" : "value",
-              "name" : "value_min",
-              "type" : "doubleMin"
-            },
-            {
-              "type" : "doubleMax",
-              "name" : "value_max",
-              "fieldName" : "value"
+              "type": "count",
+              "name": "count",
+              "fieldName": "id"
             }
           ]
         },
-        "ioConfig" : {
-          "type" : "realtime"
-        },
-        "tuningConfig" : {
-          "type" : "realtime",
-          "maxRowsInMemory" : "100000",
-          "intermediatePersistPeriod" : "PT10M",
-          "windowPeriod" : "PT10M"
+        "tuningConfig": {
+          "type": "kafka",
+          "maxRowsPerSegment": 5000000
         }
       },
-      "properties" : {
-        "task.partitions" : "1",
-        "task.replicants" : "1",
-        "topicPattern" : "trellis.event"
+      "properties": {
+        "task.partitions": "1",
+        "task.replicants": "1",
+        "topicPattern": "trellis.event"
       }
     }
-  },
-  "properties" : {
-    "zookeeper.connect" : "druid:2181",
-    "druid.discovery.curator.path" : "/druid/discovery",
-    "druid.selectors.indexing.serviceName" : "druid/overlord",
-    "commit.periodMillis" : "15000",
-    "consumer.numThreads" : "2",
-    "kafka.zookeeper.connect" : "zoo1:2181",
-    "kafka.group.id" : "tranquility-kafka"
+  ],
+  "properties": {
+    "zookeeper.connect": "druid:2181",
+    "druid.discovery.curator.path": "/druid/discovery",
+    "druid.selectors.indexing.serviceName": "druid/overlord",
+    "commit.periodMillis": "15000",
+    "consumer.numThreads": "2",
+    "kafka.zookeeper.connect": "zoo1:2181",
+    "kafka.group.id": "tranquility-kafka"
   }
 }

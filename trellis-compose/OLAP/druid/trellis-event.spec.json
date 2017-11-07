@@ -1,0 +1,118 @@
+[
+  {
+    "spec": {
+      "type": "kafka",
+      "dataSchema": {
+        "dataSource": "trellis-event",
+        "parser": {
+          "type": "string",
+          "parseSpec": {
+            "format": "json",
+            "flattenSpec": {
+              "useFieldDiscovery": true,
+              "fields": [
+                {
+                  "type": "root",
+                  "name": "id"
+                },
+                {
+                  "type": "path",
+                  "name": "type",
+                  "expr": "$.type[0]"
+                },
+                {
+                  "type": "path",
+                  "name": "type-2",
+                  "expr": "$.type[2]"
+                },
+                {
+                  "type": "path",
+                  "name": "actor",
+                  "expr": "$.actor[0]"
+                },
+                {
+                  "type": "path",
+                  "name": "object.id",
+                  "expr": "$.object.id"
+                },
+                {
+                  "type": "path",
+                  "name": "object.type",
+                  "expr": "$.object.type[0]"
+                }
+              ]
+            },
+            "dimensionsSpec": {
+              "dimensions": [],
+              "dimensionsExclusions": [
+                "@context"
+              ]
+            },
+            "timestampSpec": {
+              "format": "auto",
+              "column": "published"
+            }
+          }
+        },
+        "metricsSpec": [
+          {
+            "type": "count",
+            "name": "count"
+          }
+        ],
+        "granularitySpec": {
+          "type": "uniform",
+          "segmentGranularity": "HOUR",
+          "queryGranularity": {
+            "type": "none"
+          },
+          "rollup": true,
+          "intervals": null
+        }
+      },
+      "tuningConfig": {
+        "type": "kafka",
+        "maxRowsInMemory": 75000,
+        "maxRowsPerSegment": 5000000,
+        "intermediatePersistPeriod": "PT10M",
+        "basePersistDirectory": "/tmp/1510053829894-0",
+        "maxPendingPersists": 0,
+        "indexSpec": {
+          "bitmap": {
+            "type": "concise"
+          },
+          "dimensionCompression": "lz4",
+          "metricCompression": "lz4",
+          "longEncoding": "longs"
+        },
+        "buildV9Directly": true,
+        "reportParseExceptions": false,
+        "handoffConditionTimeout": 0,
+        "resetOffsetAutomatically": false,
+        "workerThreads": null,
+        "chatThreads": null,
+        "chatRetries": 8,
+        "httpTimeout": "PT10S",
+        "shutdownTimeout": "PT80S",
+        "offsetFetchPeriod": "PT30S"
+      },
+      "ioConfig": {
+        "topic": "trellis.event",
+        "replicas": 1,
+        "taskCount": 1,
+        "taskDuration": "PT3600S",
+        "consumerProperties": {
+          "bootstrap.servers": "kafka:9094"
+        },
+        "startDelay": "PT5S",
+        "period": "PT30S",
+        "useEarliestOffset": false,
+        "completionTimeout": "PT1800S",
+        "lateMessageRejectionPeriod": null,
+        "skipOffsetGaps": false
+      },
+      "context": null
+    },
+    "version": "2017-11-07T11:23:49.896Z"
+  }
+]

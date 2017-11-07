@@ -1,6 +1,6 @@
-##DRUID 
+## DRUID 
 
-## Create Supervisor Spec
+## Create Kafka Supervisor Spec
 ```bash
 curl -X POST -H 'Content-Type: application/json' -d @kafka-supervisor.json http://localhost:3001/druid/indexer/v1/supervisor
 ```
