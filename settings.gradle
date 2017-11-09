@@ -21,5 +21,4 @@ include 'trellis-spi'
 include 'trellis-vocabulary'
 include 'trellis-webac'
 include 'camel-ldp'
-include 'camel-ldp-integration-test'
 
