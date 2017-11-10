@@ -1,0 +1,12 @@
+version: "3.2"
+
+services:
+  druid:
+    image: trellisldp/activitystream-dataset:0.1.0
+    container_name: activitystream-dataset
+    networks:
+      - trelliscompose_default
+
+networks:
+  trelliscompose_default:
+    external: true
