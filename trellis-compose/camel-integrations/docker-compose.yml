@@ -2,7 +2,7 @@ version: "3.2"
 
 services:
   druid:
-    image: trellisldp/activitystream-dataset:0.1.0
+    image: trellisldp/activitystream-dataset
     container_name: activitystream-dataset
     networks:
       - trelliscompose_default
