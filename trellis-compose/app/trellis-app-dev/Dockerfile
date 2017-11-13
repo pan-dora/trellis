@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Christopher Johnson <christopher_hanna.johnson@uni-leipzig.de>
 LABEL description = "Provides a Trellis Repository"
 
-ENV TRELLIS_SNAPSHOT trellis-app-dev-0.1.1-SNAPSHOT
+ENV TRELLIS_SNAPSHOT trellis-app-dev-0.1.2-SNAPSHOT
 ENV TRELLIS_RUNTIME /opt
 ENV JAVA_OPTS="-Xms250m -Xmx1024m"
 RUN apt-get update && \
