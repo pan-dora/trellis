@@ -24,8 +24,8 @@ This provides composite deployments for Trellis application modules.
 
 ## Administration
 
-* Trellis can be monitored at `http://localhost:8081`
-* Zookeeper can be monitored at `http://localhost:8090/commands`
+* Trellis can be monitored at `http://localhost:8502`
+* Zookeeper can be monitored at `http://localhost:8500/commands`
 
 ## Mount Points
 
