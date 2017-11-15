@@ -40,6 +40,7 @@ zookeeper:
 
 kafka:
     bootstrapServers: localhost:9092
+    max.request.size: 5M
 
 auth:
     webac:
