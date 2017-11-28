@@ -31,7 +31,7 @@ namespaces:
     file: /opt/trellis/etc/namespaces.json
 
 zookeeper:
-    ensembleServers: zoo1:2181,zoo2:2182,zoo3:2183
+    ensembleServers: zoo1:2181
 
 kafka:
     bootstrapServers: kafka:9094
