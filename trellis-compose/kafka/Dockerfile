@@ -1,24 +1,31 @@
-FROM anapsix/alpine-java
+FROM ubuntu:16.04
+ENV KAFKA_USER=kafka \
+KAFKA_DATA_DIR=/var/lib/kafka/data \
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
+KAFKA_HOME=/opt/kafka \
+PATH=$PATH:/opt/kafka/bin
 
-ARG kafka_version=1.0.0
-ARG scala_version=2.11
+ARG KAFKA_VERSION=0.11.0.2
+ARG KAFKA_DIST=kafka_2.11-0.11.0.2
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y openjdk-8-jre-headless wget \
+	&& wget -q "http://www.apache.org/dist/kafka/$KAFKA_VERSION/$KAFKA_DIST.tgz" \
+    && wget -q "http://www.apache.org/dist/kafka/$KAFKA_VERSION/$KAFKA_DIST.tgz.asc" \
+    && wget -q "http://kafka.apache.org/KEYS" \
+    && export GNUPGHOME="$(mktemp -d)" \
+    && gpg --import KEYS \
+    && gpg --batch --verify "$KAFKA_DIST.tgz.asc" "$KAFKA_DIST.tgz" \
+    && tar -xzf "$KAFKA_DIST.tgz" -C /opt \
+    && rm -r "$GNUPGHOME" "$KAFKA_DIST.tgz" "$KAFKA_DIST.tgz.asc"
 
-MAINTAINER Christopher Johnson <christopher_hanna.johnson@uni-leipzig.de>
+COPY log4j.properties /opt/$KAFKA_DIST/config/
 
-RUN apk add --update unzip wget curl docker jq coreutils
-
-ENV KAFKA_VERSION=$kafka_version SCALA_VERSION=$scala_version
-ADD download-kafka.sh /tmp/download-kafka.sh
-RUN chmod a+x /tmp/download-kafka.sh && sync && /tmp/download-kafka.sh && tar xfz /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt && rm /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka
-
-VOLUME ["/kafka"]
-
-ENV KAFKA_HOME /opt/kafka
-ENV PATH ${PATH}:${KAFKA_HOME}/bin
-ADD start-kafka.sh /usr/bin/start-kafka.sh
-COPY config/* ${KAFKA_HOME}/config/
-# The scripts need to have executable permission
-RUN chmod a+x /usr/bin/start-kafka.sh
-
-# Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
-CMD ["start-kafka.sh"]
+RUN set -x \
+    && ln -s /opt/$KAFKA_DIST $KAFKA_HOME \
+    && useradd $KAFKA_USER \
+    && [ `id -u $KAFKA_USER` -eq 1000 ] \
+    && [ `id -g $KAFKA_USER` -eq 1000 ] \
+    && mkdir -p $KAFKA_DATA_DIR \
+    && chown -R "$KAFKA_USER:$KAFKA_USER"  /opt/$KAFKA_DIST \
+    && chown -R "$KAFKA_USER:$KAFKA_USER"  $KAFKA_DATA_DIR

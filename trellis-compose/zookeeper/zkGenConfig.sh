@@ -41,7 +41,11 @@ DOMAIN=`hostname -d`
 function print_servers() {
     for (( i=1; i<=$ZK_REPLICAS; i++ ))
     do
-        echo "server.$i=$NAME-$((i-1)).$DOMAIN:$ZK_SERVER_PORT:$ZK_ELECTION_PORT;$ZK_CLIENT_PORT"
+        if [ $i -eq $MY_ID ]; then
+            echo "server.$i=0.0.0.0:$ZK_SERVER_PORT:$ZK_ELECTION_PORT"
+        else
+            echo "server.$i=$NAME-$((i-1)).$DOMAIN:$ZK_SERVER_PORT:$ZK_ELECTION_PORT"
+        fi
     done
 }
 
@@ -80,6 +84,7 @@ function validate_env() {
     echo "ZK_HEAP_SIZE=$ZK_HEAP_SIZE"
     echo "ZK_SNAP_RETAIN_COUNT=$ZK_SNAP_RETAIN_COUNT"
     echo "ZK_PURGE_INTERVAL=$ZK_PURGE_INTERVAL"
+    echo "ZK_STANDALONE=$ZK_STANDALONE"
     echo "ENSEMBLE"
     print_servers
     echo "Environment validation successful"
@@ -100,7 +105,8 @@ function create_config() {
     echo "maxSessionTimeout=$ZK_MAX_SESSION_TIMEOUT" >> $ZK_CONFIG_FILE
     echo "autopurge.snapRetainCount=$ZK_SNAP_RETAIN_COUNT" >> $ZK_CONFIG_FILE
     echo "autopurge.purgeInteval=$ZK_PURGE_INTERVAL" >> $ZK_CONFIG_FILE
-    echo "standaloneEnabled=false" >> $ZK_CONFIG_FILE
+    echo "standaloneEnabled=$ZK_STANDALONE" >> $ZK_CONFIG_FILE
+    echo "4lw.commands.whitelist=*" >> $ZK_CONFIG_FILE
 
     if [ $ZK_REPLICAS -gt 1 ]; then
         print_servers >> $ZK_CONFIG_FILE

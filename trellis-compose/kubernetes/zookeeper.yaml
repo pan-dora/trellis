@@ -4,27 +4,16 @@ kind: Service
 metadata:
   name: zk-svc
   labels:
-    app: zk-svc
-spec:
-  ports:
-  - port: 2888
-    name: server
-  - port: 3888
-    name: leader-election
-  clusterIP: None
-  selector:
-    app: zk-svc
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: zoo1
-  labels:
     app: zk
 spec:
   ports:
   - port: 2181
     name: client
+  - port: 2888
+    name: server
+  - port: 3888
+    name: leader-election
+  clusterIP: None
   selector:
     app: zk
 ---
@@ -82,7 +71,7 @@ spec:
       containers:
       - name: zk
         imagePullPolicy: Always
-        image: trellisldp/zookeeper:3.5.3
+        image: gcr.io/google_samples/k8szk:v3
         resources:
           requests:
             memory: "2Gi"
@@ -95,8 +84,6 @@ spec:
         - containerPort: 3888
           name: leader-election
         env:
-        - name : ZK_ENSEMBLE
-          value: "zk-0;zk-1;zk-2"
         - name : ZK_REPLICAS
           value: "3"
         - name : ZK_HEAP_SIZE
@@ -134,6 +121,10 @@ spec:
             configMapKeyRef:
                 name: zk-cm
                 key: purge.interval
+        - name: ZK_STANDALONE
+          value: "false"
+        - name: ZK_LOG_LEVEL
+          value: "debug"
         - name: ZK_CLIENT_PORT
           value: "2181"
         - name: ZK_SERVER_PORT
