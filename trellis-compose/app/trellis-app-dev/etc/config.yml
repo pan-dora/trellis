@@ -31,10 +31,10 @@ namespaces:
     file: /opt/trellis/etc/namespaces.json
 
 zookeeper:
-    ensembleServers: zoo1:2181
+    ensembleServers: zk-svc:2181
 
 kafka:
-    bootstrapServers: kafka:9094
+    bootstrapServers: kafka-svc:9093
     max.request.size: 5000000
 
 auth:

@@ -71,7 +71,7 @@ spec:
       containers:
       - name: zk
         imagePullPolicy: Always
-        image: gcr.io/google_samples/k8szk:v3
+        image: trellisldp/zookeeper:3.6.0
         resources:
           requests:
             memory: "2Gi"
