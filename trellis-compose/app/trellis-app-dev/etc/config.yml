@@ -22,7 +22,8 @@ logging:
 partitions:
     - id: repository
       binaries:
-          path: /var/lib/trellis/binaries
+          path: /mnt/binaries
+          levels: 0
       resources:
           path: /var/lib/trellis/resources
       baseUrl: http://trellis:8080/

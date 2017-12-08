@@ -32,10 +32,21 @@ spec:
       containers:
       - image: trellisldp/trellis-processing-k8s
         name: trellis-processing
-        resources: {}
         volumeMounts:
         - mountPath: /var/lib/trellis
           name: datadir-trellis
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
+        lifecycle:
+          postStart:
+            exec:
+              command: ['sh', '-c', 'gcsfuse -o nonempty trellis-binaries /mnt/binaries']
+          preStop:
+            exec:
+              command: ["fusermount", "-u", " /mnt/binaries"]
       restartPolicy: Always
       volumes:
       - name: datadir-trellis

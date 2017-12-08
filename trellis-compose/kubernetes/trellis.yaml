@@ -7,7 +7,6 @@ metadata:
   name: trellis-svc
 spec:
   type: LoadBalancer
-  loadBalancerIP: 35.195.254.156
   ports:
   - name: "8080"
     port: 8080
@@ -35,12 +34,23 @@ spec:
         app: trellis
     spec:
       containers:
-      - image: trellisldp/trellis-app-dev:0.1.3
+      - image: trellisldp/trellis-app-dev:0.1.6
         name: trellis
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
         ports:
         - containerPort: 8080
         - containerPort: 8081
-        resources: {}
+        lifecycle:
+          postStart:
+            exec:
+              command: ['sh', '-c', 'gcsfuse -o nonempty trellis-binaries /mnt/binaries']
+          preStop:
+            exec:
+              command: ["fusermount", "-u", " /mnt/binaries"]
         volumeMounts:
         - mountPath: /var/lib/trellis
           name: datadir-trellis
@@ -58,7 +68,7 @@ metadata:
   name: datadir-trellis
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 100Mi
+      storage: 10Gi
