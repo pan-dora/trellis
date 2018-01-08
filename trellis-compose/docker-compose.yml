@@ -12,8 +12,6 @@ services:
     environment:
         ZOO_MY_ID: 1
         ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2182 server.3=zoo3:2888:3888;2183
-    volumes:
-      - ./zk-conf/zoo.cfg:/conf/zoo.cfg
 
   zoo2:
     image: zookeeper:3.5
@@ -56,13 +54,14 @@ services:
       - kafka-data-volume:/kafka
 
   trellis:
-    image: trellisldp/trellis-app-dev:0.1.2
+    image: trellisldp/trellis-rosid-app:0.3.1
     container_name: trellis
     ports:
       - "8080:8080"
       - "8502:8081"
     volumes:
       - trellis-data-volume:/var/lib/trellis
+      - trellis-binary-volume:/mnt/binaries
 
   trellis-processing:
     image: trellisldp/trellis-processing:0.1.0
@@ -76,6 +75,11 @@ volumes:
     driver_opts:
       type: none
       device: /mnt/trellis-data
+      o: bind
+  trellis-binary-volume:
+    driver_opts:
+      type: none
+      device: /mnt/trellis-binaries
       o: bind
   kafka-data-volume:
     driver_opts:
