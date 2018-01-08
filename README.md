@@ -8,9 +8,9 @@ This provides composite deployments for Trellis application modules.
 
 ## docker images
 
-* [`trellis-app`](https://github.com/trellis-ldp/trellis-app/tree/master)  - Provides the Trellis Application.
+* [`trellis-rosid-app`](https://github.com/trellis-ldp/trellis-rosid/trellis-rosid-app/tree/master)  - Provides the Trellis Rosid Application.
 
-[![](https://images.microbadger.com/badges/image/trellisldp/trellis-app.svg)](https://microbadger.com/images/trellisldp/trellis-app "trellisldp/trellis-app")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-app.svg)](https://microbadger.com/images/trellisldp/trellis-app "trellisldp/trellis-app")
+[![](https://images.microbadger.com/badges/image/trellisldp/trellis-rosid-app.svg)](https://microbadger.com/images/trellisldp/trellis-rosid-app "trellisldp/trellis-rosid-app")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-rosid-app.svg)](https://microbadger.com/images/trellisldp/trellis-rosid-app "trellisldp/trellis-rosid-app")
 
 * [`trellis-processing`](https://github.com/trellis-ldp/trellis-rosid-file-streaming/tree/master)  - Provides a Beam async processor.
 
@@ -31,6 +31,7 @@ This provides composite deployments for Trellis application modules.
 
 To persist data, create these mount points before running docker-compose:
 * `/mnt/trellis-data`
+* `/mnt/trellis-binaries`
 * `/mnt/kafka-data`
 
 ## Configuration
