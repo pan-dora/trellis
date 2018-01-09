@@ -38,6 +38,9 @@ To persist data, create these mount points before running docker-compose:
 * Trellis can be configured with `config.yml`
 * Zookeeper can be configured with `zoo.cfg`
 
+## Scaling
+* Kafka can be scaled by running `docker-compose scale kafka=3` where `3` is the number of brokers.
+
 ## Submodule Update
 * To update submodules, run `./gradlew submoduleUpdate`
 

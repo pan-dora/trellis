@@ -35,10 +35,6 @@ services:
 
   kafka:
     image: trellisldp/kafka:1.0.0
-    container_name: kafka
-    ports:
-      - "9094:9094"
-      - "1099:1099"
     environment:
       HOSTNAME_COMMAND: "ifconfig|grep inet|head -1|sed 's/\\:/ /'|awk '{print $$3}'"
       KAFKA_ZOOKEEPER_CONNECT: zoo1:2181
@@ -60,14 +56,14 @@ services:
       - "8080:8080"
       - "8502:8081"
     volumes:
-      - trellis-data-volume:/var/lib/trellis
+      - trellis-data-volume:/var/lib/trellis/resources
       - trellis-binary-volume:/mnt/binaries
 
   trellis-processing:
-    image: trellisldp/trellis-processing:0.1.0
+    image: trellisldp/trellis-processing:0.3.0
     container_name: trellis-processing
     volumes:
-      - trellis-data-volume:/var/lib/trellis
+      - trellis-data-volume:/var/lib/trellis/resources
     restart: always
 
 volumes:

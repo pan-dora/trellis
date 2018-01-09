@@ -17,6 +17,7 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN apt-get update && \
     apt-get -y install \
     default-jdk \
+    wget \
     git \
     bash \
     nano \
@@ -24,7 +25,8 @@ RUN apt-get update && \
     gcsfuse
 
 WORKDIR ${TRELLIS_RUNTIME}
-COPY trellis-processing.jar .
+RUN wget -q "https://github.com/trellis-ldp/trellis-rosid/releases/download/trellis-rosid-0.3.0/trellis-processing.jar"
+#COPY trellis-processing.jar .
 COPY cfg/* .
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
