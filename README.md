@@ -12,7 +12,7 @@ This provides composite deployments for Trellis application modules.
 
 [![](https://images.microbadger.com/badges/image/trellisldp/trellis-rosid-app.svg)](https://microbadger.com/images/trellisldp/trellis-rosid-app "trellisldp/trellis-rosid-app")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-rosid-app.svg)](https://microbadger.com/images/trellisldp/trellis-rosid-app "trellisldp/trellis-rosid-app")
 
-* [`trellis-processing`](https://github.com/trellis-ldp/trellis-rosid-file-streaming/tree/master)  - Provides a Beam async processor.
+* [`trellis-processing`](https://github.com/trellis-ldp/trellis-rosid/trellis-rosid-file-streaming/tree/master)  - Provides a Beam async processor.
 
 [![](https://images.microbadger.com/badges/image/trellisldp/trellis-processing.svg)](https://microbadger.com/images/trellisldp/trellis-processing "trellisldp/trellis-processing")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-processing.svg)](https://microbadger.com/images/trellisldp/trellis-processing "trellisldp/trellis-processing")
 
