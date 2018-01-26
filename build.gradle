@@ -100,7 +100,7 @@ configure(allprojects) { project ->
     ext.jenaVersionRange = '[3.5,4)'
 
     processResources {
-        filesNotMatching(["**/*.sh", "**/*.jar"]) {
+        filesNotMatching(["**/*.sh", "**/*.jar", "**/*.yml"]) {
             expand(project.properties)
         }
     }

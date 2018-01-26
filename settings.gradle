@@ -12,6 +12,7 @@ include ':trellis-event-serialization'
 include ':trellis-id'
 include ':trellis-io-jena'
 include ':trellis-namespaces'
+include ':trellis-triplestore'
 include ':trellis-webac'
 
 include ':trellis-karaf'
@@ -29,6 +30,7 @@ project(':trellis-event-serialization').projectDir = "$rootDir/trellis/trellis-e
 project(':trellis-id').projectDir = "$rootDir/trellis/trellis-id" as File
 project(':trellis-io-jena').projectDir = "$rootDir/trellis/trellis-io-jena" as File
 project(':trellis-namespaces').projectDir = "$rootDir/trellis/trellis-namespaces" as File
+project(':trellis-triplestore').projectDir = "$rootDir/trellis/trellis-triplestore" as File
 project(':trellis-webac').projectDir = "$rootDir/trellis/trellis-webac" as File
 
 project(':trellis-karaf').projectDir = "$rootDir/trellis/trellis-karaf" as File

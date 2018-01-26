@@ -1,0 +1,22 @@
+version: "3.2"
+
+services:
+  trellis-processing:
+    image: trellisldp/trellis-processing:0.3.0
+    container_name: trellis-processing
+    volumes:
+      - trellis-data-volume:/var/lib/trellis/resources
+    restart: always
+    networks:
+      - trelliscompose_default
+
+networks:
+  trelliscompose_default:
+    external: true
+
+volumes:
+  trellis-data-volume:
+    driver_opts:
+      type: none
+      device: /mnt/trellis-data
+      o: bind

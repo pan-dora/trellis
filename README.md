@@ -39,10 +39,15 @@ To persist data, create these mount points before running docker-compose:
 * Zookeeper can be configured with `zoo.cfg`
 
 ## Scaling
-* Kafka can be scaled by running `docker-compose scale kafka=3` where `3` is the number of brokers.
+* Kafka can be scaled by running `docker-compose up --scale kafka=3` where `3` is the number of brokers.
 
 ## Submodule Update
 * To update submodules, run `./gradlew submoduleUpdate`
+
+## Trellis Processing
+To start the async processor, run `docker-compose up` in the `trellis-compose/trellis-processing` directory.
+This should be done _after_ all other containers have started.  
+Trellis Processing is required for the creation of LDP membership triples.
 
 ## OSGI / Karaf
 * WIP
