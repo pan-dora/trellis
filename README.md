@@ -40,6 +40,7 @@ To persist data, create these mount points before running docker-compose:
 
 ## Scaling
 * Kafka can be scaled by running `docker-compose up --scale kafka=3` where `3` is the number of brokers.
+* Scaling can be performed after trellis processing has been started.
 
 ## Submodule Update
 * To update submodules, run `./gradlew submoduleUpdate`

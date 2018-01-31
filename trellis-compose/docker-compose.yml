@@ -35,7 +35,6 @@ services:
 
   kafka:
     image: trellisldp/kafka:1.0.0
-    container_name: kafka
     environment:
       HOSTNAME_COMMAND: "ifconfig|grep inet|head -1|sed 's/\\:/ /'|awk '{print $$3}'"
       KAFKA_ZOOKEEPER_CONNECT: zoo1:2181
@@ -51,7 +50,7 @@ services:
       - kafka-data-volume:/kafka
 
   trellis:
-    image: trellisldp/trellis-rosid-app:0.3.1
+    image: trellisldp/trellis-rosid-app:0.3.2
     container_name: trellis
     ports:
       - "8080:8080"

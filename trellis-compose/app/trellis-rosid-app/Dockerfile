@@ -12,7 +12,7 @@ RUN export GCSFUSE_REPO=gcsfuse-xenial && \
 
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
-ENV TRELLIS_SNAPSHOT trellis-rosid-app-0.3.1-SNAPSHOT
+ENV TRELLIS_SNAPSHOT trellis-rosid-app-0.3.2-SNAPSHOT
 ENV TRELLIS_RUNTIME /opt
 ENV JAVA_OPTS="-Xms250m -Xmx1024m"
 RUN apt-get update && \

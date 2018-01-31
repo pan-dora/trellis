@@ -42,6 +42,7 @@ configure(allprojects) { project ->
     ext.ariesVersion = "1.0.8"
     ext.cheshireVersion = "5.8.0"
     ext.clojureVersion = "1.8.0"
+    ext.commonsCollectionsVersion = '4.1'
     ext.commonsIoVersion = "2.6"
     ext.commonsLangVersion = "3.5"
     ext.commonsCsvVersion = "1.4"
