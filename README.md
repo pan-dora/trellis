@@ -8,9 +8,9 @@ This provides composite deployments for Trellis application modules.
 
 ## docker images
 
-* [`trellis-rosid-app`](https://github.com/trellis-ldp/trellis-rosid/trellis-rosid-app/tree/master)  - Provides the Trellis Rosid Application.
+* [`trellis-app`](https://github.com/trellis-ldp/trellis/tree/master/trellis-app)  - Provides the Trellis Application configured with a Kafka Notification System.
 
-[![](https://images.microbadger.com/badges/image/trellisldp/trellis-rosid-app.svg)](https://microbadger.com/images/trellisldp/trellis-rosid-app "trellisldp/trellis-rosid-app")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-rosid-app.svg)](https://microbadger.com/images/trellisldp/trellis-rosid-app "trellisldp/trellis-rosid-app")
+[![](https://images.microbadger.com/badges/image/trellisldp/trellis-app:0.6.0.svg)](https://microbadger.com/images/trellisldp/trellis-app "trellisldp/trellis-app")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-app.svg)](https://microbadger.com/images/trellisldp/trellis-app "trellisldp/trellis-app")
 
 * [`trellis-processing`](https://github.com/trellis-ldp/trellis-rosid/tree/master/trellis-rosid-file-streaming)  - Provides a Beam async processor.
 

@@ -2,6 +2,4 @@
 [submodule "trellis"]
 	path = trellis
 	url = https://github.com/trellis-ldp/trellis.git
-[submodule "trellis-rosid"]
-	path = trellis-rosid
-	url = https://github.com/trellis-ldp/trellis-rosid.git
+
