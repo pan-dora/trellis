@@ -1,5 +1,6 @@
 rootProject.name = 'trellis'
 include ':trellis'
+include ':trellis-app'
 include ':trellis-api'
 include ':trellis-http'
 include ':trellis-vocabulary'
@@ -15,6 +16,10 @@ include ':trellis-io-jena'
 include ':trellis-namespaces'
 include ':trellis-triplestore'
 include ':trellis-webac'
+
+include ':trellis-amqp'
+include ':trellis-jms'
+include ':trellis-kafka'
 
 include ':trellis-karaf'
 include ':trellis-test'
@@ -38,14 +43,9 @@ project(':trellis-webac').projectDir = "$rootDir/trellis/trellis-webac" as File
 project(':trellis-karaf').projectDir = "$rootDir/trellis/trellis-karaf" as File
 project(':trellis-test').projectDir = "$rootDir/trellis/trellis-test" as File
 
+project(':trellis-amqp').projectDir = "$rootDir/trellis/notifications/trellis-amqp" as File
+project(':trellis-jms').projectDir = "$rootDir/trellis/notifications/trellis-jms" as File
+project(':trellis-kafka').projectDir = "$rootDir/trellis/notifications/trellis-kafka" as File
 
-include ':trellis-rosid'
-include ':trellis-rosid-app'
-include ':trellis-rosid-common'
-include ':trellis-rosid-file'
-include ':trellis-rosid-file-streaming'
+project(':trellis-app').projectDir = "$rootDir/trellis/trellis-app" as File
 
-project(':trellis-rosid-common').projectDir = "$rootDir/trellis-rosid/trellis-rosid-common" as File
-project(':trellis-rosid-file').projectDir = "$rootDir/trellis-rosid/trellis-rosid-file" as File
-project(':trellis-rosid-app').projectDir = "$rootDir/trellis-rosid/trellis-rosid-app" as File
-project(':trellis-rosid-file-streaming').projectDir = "$rootDir/trellis-rosid/trellis-rosid-file-streaming" as File

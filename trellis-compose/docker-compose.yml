@@ -50,7 +50,7 @@ services:
       - kafka-data-volume:/kafka
 
   trellis:
-    image: trellisldp/trellis-rosid-app:0.3.2
+    image: trellisldp/trellis-app:0.6.0
     container_name: trellis
     ports:
       - "8080:8080"
