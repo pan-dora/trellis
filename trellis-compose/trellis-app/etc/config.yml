@@ -21,7 +21,7 @@ logging:
 
 binaries: /mnt/binaries
 
-resources: /var/lib/trellis/resources
+resources: http://fuseki:3030/fuseki/trellis
 
 mementos: /var/lib/trellis/mementos
 

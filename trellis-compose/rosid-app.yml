@@ -50,27 +50,21 @@ services:
       - kafka-data-volume:/kafka
 
   trellis:
-    image: trellisldp/trellis-app-ts:0.6.0
+    image: trellisldp/trellis-rosid-app:0.3.2
     container_name: trellis
-    restart: always
     ports:
       - "8080:8080"
       - "8502:8081"
     volumes:
+      - trellis-data-volume:/var/lib/trellis/resources
       - trellis-binary-volume:/mnt/binaries
 
-  fuseki:
-    image: trellisldp/fuseki
-    container_name: fuseki
-    restart: always
-    environment:
-        CATALINA_OPTS: -Xmx8G -Xss8M
-    ports:
-      - "3030:3030"
-    volumes:
-      - fuseki-volume:/shared
-
 volumes:
+  trellis-data-volume:
+    driver_opts:
+      type: none
+      device: /mnt/trellis-data
+      o: bind
   trellis-binary-volume:
     driver_opts:
       type: none
@@ -80,9 +74,4 @@ volumes:
     driver_opts:
       type: none
       device: /mnt/kafka-data
-      o: bind
-  fuseki-volume:
-    driver_opts:
-      type: none
-      device: /mnt/fuseki-data
       o: bind
