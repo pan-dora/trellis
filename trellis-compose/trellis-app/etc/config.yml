@@ -37,11 +37,11 @@ namespaces: /opt/trellis/etc/namespaces.json
 
 auth:
     webac:
-        enabled: false
+        enabled: true
     anon:
         enabled: true
     jwt:
-        enabled: false
+        enabled: true
         base64Encoded: false
         key: secret
     basic:

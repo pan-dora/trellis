@@ -44,9 +44,9 @@ To persist data, create these mount points before running docker-compose:
 * Trellis can be configured with `config.yml`
 * Zookeeper can be configured with `zoo.cfg`
 
-## JDK
-* the trellis-app image is compiled for JRE 9 (53).  
-* the ubuntu image provides the Oracle 9 JDK
+## JDK 9
+* the trellis-app is compiled for JRE 9 (53).  
+* the ubuntu docker container provides the Oracle 9 JDK
 
 ## HTTP/2 over TLS
 * a development keystore `trellis.jks` is included in `trellis-app/etc`
@@ -61,10 +61,10 @@ To persist data, create these mount points before running docker-compose:
 * To update submodules, run `./gradlew submoduleUpdate`
 
 ## File-Based Resource Service 
-To run trellis-rosid-app run `docker-compose -f rosid-app.yml up`
-To start the async processor, run `docker-compose up` in the `trellis-compose/trellis-processing` directory.
-This should be done _after_ all other containers have started.  
-Trellis Processing is required for the creation of LDP containment triples with this resource service.
+* To run `trellis-rosid-app` run `docker-compose -f rosid-app.yml up`
+* To start the async processor, run `docker-compose up` in the `trellis-compose/trellis-processing` directory.
+* This should be done _after_ all other containers have started.  
+* Trellis Processing is required for the creation of LDP containment triples with this resource service.
 
 ## OSGI / Karaf
 * WIP

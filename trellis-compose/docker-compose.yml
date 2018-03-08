@@ -35,6 +35,9 @@ services:
 
   kafka:
     image: trellisldp/kafka:1.0.0
+    ports:
+        - "9094:9094"
+        - "1099:1099"
     environment:
       HOSTNAME_COMMAND: "ifconfig|grep inet|head -1|sed 's/\\:/ /'|awk '{print $$3}'"
       KAFKA_ZOOKEEPER_CONNECT: zoo1:2181

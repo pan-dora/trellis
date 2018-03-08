@@ -14,7 +14,6 @@ ext {
 
 configure(allprojects) { project ->
     apply plugin: 'maven'
-    apply plugin: 'osgi'
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
     apply plugin: 'signing'
@@ -28,78 +27,70 @@ configure(allprojects) { project ->
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots"
         }
-        maven {
-            url "http://clojars.org/repo/"
-        }
     }
+    ext {
+        activationApiVersion = '1.2.0'
+        activeMqVersion = '5.15.3'
+        amqpClientVersion = '4.2.0'
+        ariesVersion = '1.0.8'
+        cheshireVersion = '5.8.0'
+        clojureVersion = '1.8.0'
+        commonsCollectionsVersion = '4.1'
+        commonsIoVersion = '2.6'
+        commonsLangVersion = '3.7'
+        commonsCsvVersion = '1.4'
+        commonsCodecVersion = '1.11'
+        commonsRdfVersion = '0.5.0'
+        curatorFrameworkVersion = '4.0.1-SNAPSHOT'
+        dexxcollectionVersion = '0.6'
+        dropwizardVersion = '1.2.4'
+        errorproneVersion = '2.1.2-SNAPSHOT'
+        guavaVersion = '20.0'
+        httpclientVersion = '4.5.3'
+        httpcoreVersion = '4.4.6'
+        jacksonVersion = '2.9.4'
+        javaxJsonApiVersion = '1.1'
+        javaxAnnotationsVersion = '1.3.2'
+        javaxInjectVersion = '1_2'
+        javaxJsonVersion = '1.1.2'
+        jaxrsVersion = '2.1'
+        jaxWsRsApiVersion = '2.0.1'
+        jenaVersion = '3.6.0'
+        jettyAlpnServerVersion = '9.4.8.v20171121'
+        jettyAlpnBootVersion = '8.1.12.v20180117'
+        jmsApiVersion = '2.0.1'
+        jsonldVersion = '0.11.1'
+        kafkaVersion = '1.0.0_1'
+        kafkaClientsVersion = '1.0.0-SNAPSHOT'
+        lz4Version = '1.3.0'
+        metricsVersion = '4.0.2'
+        mustacheVersion = '0.9.5_1'
+        mustacheCompilerVersion = '0.9.5'
+        rabbitMqVersion = '5.1.2'
+        slf4jVersion = '1.7.25'
+        tamayaVersion = '0.3-incubating'
+        thriftVersion = '0.9.3'
 
-    ext.activeMqVersion = "5.15.2"
-    ext.javaxAnnotationsVersion = '1.3.1'
-    ext.javaxInjectVersion = '1_2'
-    ext.javaxJsonVersion = '1.1.2'
-    ext.jaxrsVersion = '2.1'
-    ext.amqpClientVersion = "4.2.0"
-    ext.ariesVersion = "1.0.8"
-    ext.cheshireVersion = "5.8.0"
-    ext.clojureVersion = "1.8.0"
-    ext.commonsCollectionsVersion = '4.1'
-    ext.commonsIoVersion = "2.6"
-    ext.commonsLangVersion = "3.7"
-    ext.commonsCsvVersion = "1.4"
-    ext.commonsCodecVersion = "1.11"
-    ext.commonsTextVersion = '1.2'
-    ext.curatorFrameworkVersion = "4.0.1-SNAPSHOT"
-    ext.dexxcollectionVersion = "0.6"
-    ext.errorproneVersion = "2.1.2-SNAPSHOT"
-    ext.guavaVersion = "20.0"
-    ext.httpclientVersion = "4.5.3"
-    ext.httpcoreVersion = "4.4.6"
-    ext.jacksonVersion = "2.9.0"
-    ext.javaxJsonApiVersion = "1.1"
-    ext.jaxWsRsApiVersion = "2.0.1"
-    ext.jenaVersion = "3.6.0"
-    ext.jmsApiVersion = '2.0.1'
-    ext.jsonldVersion = "0.11.1"
-    ext.kafkaClientsVersion = "1.0.0-SNAPSHOT"
-    ext.lz4Version = "1.3.0"
-    ext.metricsVersion = "3.2.5"
-    ext.mustacheVersion = '0.9.5_1'
-    ext.mustacheCompilerVersion = "0.9.5"
-    ext.rabbitMqVersion = '5.1.1'
-    ext.thriftVersion = "0.9.3"
+        jwtVersion = '0.9.0'
+        jaxbVersion = '2.3.0'
 
-    //Rosid Dependencies
-    ext.beamVersion = '2.1.0'
-    ext.commonsRdfVersion = '0.5.0'
-    ext.curatorVersion = '4.0.0'
-    ext.kafkaVersion = '1.0.0_1'
-    ext.trellisVersion = '0.5.1'
-    ext.slf4jVersion = '1.7.25'
-    ext.zookeeperVersion = '3.4.11'
-    ext.trellisKafkaVersion = '0.2.3'
-    ext.activationApiVersion = '1.2.0'
-    ext.dropwizardVersion = '1.2.0'
+        /* Testing */
+        logbackVersion = '1.2.3'
+        apiguardianVersion = '1.0.0'
+        awaitilityVersion = '3.0.0'
+        commonsTextVersion = '1.2'
+        jerseyVersion = '2.26'
+        jsonVersion = '1.1.2'
+        junitVersion = '5.1.0'
+        junitPlatformVersion = '1.1.0'
+        mockitoVersion = '2.15.0'
+        xercesVersion = '2.11.0'
 
-    ext.jwtVersion = '0.9.0'
-    ext.jaxbVersion = '2.3.0'
-
-    ext.logbackVersion = '1.2.3'
-    ext.apiguardianVersion = '1.0.0'
-    ext.awaitilityVersion = '3.0.0'
-    ext.jacksonVersion = '2.9.4'
-    ext.jerseyVersion = '2.26'
-    ext.jsonVersion = '1.1.2'
-    ext.junitVersion = '5.0.2'
-    ext.junitPlatformVersion = '1.0.2'
-    ext.junitVintageVersion = '4.12.2'
-    ext.mockitoVersion = '2.13.0'
-    ext.hamcrestVersion = '1.3'
-    ext.xercesVersion = '2.11.0'
-
-    ext.spiflyVersion = '1.0.8'
-    ext.projectOsgiVersion = project.version.replaceAll("-SNAPSHOT", ".SNAPSHOT")
-    ext.trellisVersionRange = '[0.5,1)'
-    ext.jenaVersionRange = '[3.5,4)'
+        spiflyVersion = '1.0.8'
+        projectOsgiVersion = project.version.replaceAll("-SNAPSHOT", ".SNAPSHOT")
+        trellisVersionRange = '[0.5,1)'
+        jenaVersionRange = '[3.5,4)'
+    }
 
     processResources {
         filesNotMatching(["**/*.sh", "**/*.jar", "**/*.yml"]) {
@@ -132,22 +123,6 @@ configure(allprojects) { project ->
 configure(subprojects) { subproject ->
     task deleteSubprojectFiles(type: Delete) {
         delete "${projectDir}/settings.gradle", "${projectDir}/docs"
-    }
-
-    task javadocJar(type: Jar) {
-        classifier 'javadoc'
-        from ("$rootDir/LICENSE") {
-            into "META-INF"
-        }
-        from javadoc
-    }
-
-    task sourceJar(type: Jar) {
-        classifier 'sources'
-        from ("$rootDir/LICENSE") {
-            into "META-INF"
-        }
-        from sourceSets.main.allSource
     }
 }
 
