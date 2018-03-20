@@ -31,7 +31,7 @@ resources: http://fuseki:3030/fuseki/trellis
 
 mementos: /var/lib/trellis/mementos
 
-baseUrl: http://trellis:8080/
+baseUrl: https://localhost:8445/
 
 namespaces: /opt/trellis/etc/namespaces.json
 

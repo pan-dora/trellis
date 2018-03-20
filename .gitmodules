@@ -1,5 +1,0 @@
-
-[submodule "trellis"]
-	path = trellis
-	url = https://github.com/trellis-ldp/trellis.git
-
