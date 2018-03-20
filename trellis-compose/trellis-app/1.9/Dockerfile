@@ -12,7 +12,7 @@ RUN export GCSFUSE_REPO=gcsfuse-xenial && \
 
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
-ENV TRELLIS_SNAPSHOT trellis-app-0.6.0-SNAPSHOT
+ENV TRELLIS_SNAPSHOT trellis-app-0.7.0-SNAPSHOT
 ENV TRELLIS_RUNTIME /opt
 #ENV JDK_JAVA_OPTIONS="-Xms250m -Xmx1024m"
 RUN apt-get update \
