@@ -14,10 +14,6 @@ This provides composite deployments for Trellis application modules.
 
 [![](https://images.microbadger.com/badges/image/trellisldp/trellis-app-8-ts:0.6.0.svg)](https://microbadger.com/images/trellisldp/trellis-app-8-ts "trellisldp/trellis-app-8-ts")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-app-8-ts.svg)](https://microbadger.com/images/trellisldp/trellis-app-8-ts "trellisldp/trellis-app-8-ts")
 
-* 1.9 (JPMS)
-
-[![](https://images.microbadger.com/badges/image/trellisldp/trellis-app-9-ts:0.7.0.svg)](https://microbadger.com/images/trellisldp/trellis-app-9-ts "trellisldp/trellis-app-9-ts")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-app-9-ts.svg)](https://microbadger.com/images/trellisldp/trellis-app-9-ts "trellisldp/trellis-app-9-ts")
-
 * 1.10 (JPMS)
 
 [![](https://images.microbadger.com/badges/image/trellisldp/trellis-app-10-ts:0.7.0.svg)](https://microbadger.com/images/trellisldp/trellis-app-10-ts "trellisldp/trellis-app-10-ts")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-app-10-ts.svg)](https://microbadger.com/images/trellisldp/trellis-app-10-ts "trellisldp/trellis-app-10-ts")
@@ -55,8 +51,8 @@ To persist data, create these mount points before running docker-compose:
 * Zookeeper can be configured with `zoo.cfg`
 
 ## JDK
-* the trellis-app is compiled for 1.8, 1.9 and 1.10.  
-* the 9 and 10 builds use an experimental [JPMS branch](https://github.com/christopher-johnson/trellis/tree/jpms)
+* the trellis-app is compiled for 1.8, 1.10.  
+* the 10 build use an experimental [JPMS branch](https://github.com/trellis-ldp/trellis/tree/jpms)
 
 ## HTTP/2 over TLS
 * a development keystore `trellis.jks` is included in `trellis-app/etc`

@@ -3,7 +3,7 @@
 @prefix tdb:     <http://jena.hpl.hp.com/2008/tdb#> .
 @prefix :        <#> .
 
-:fedoraService a fuseki:Service ;
+:trellisService a fuseki:Service ;
     fuseki:name                        "trellis" ;
     fuseki:serviceQuery                "sparql", "query" ;
     fuseki:serviceUpdate               "update" ;
