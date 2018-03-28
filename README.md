@@ -44,6 +44,7 @@ To persist data, create these mount points before running docker-compose:
 * `/mnt/trellis-binaries`
 * `/mnt/kafka-data`
 * `/mnt/fuseki-data`
+* `/mnt/fuseki-backup`
 * `/mnt/trellis-data` (only with trellis-rosid-app)
 
 ## Configuration

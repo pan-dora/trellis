@@ -17,4 +17,4 @@
     ja:context [
         ja:cxtName "arq:queryTimeout" ;
         ja:cxtValue "10000" ] ;
-    tdb:location "/shared/trellis_data" .
+    tdb:location "/shared/fuseki-data/trellis_data" .
