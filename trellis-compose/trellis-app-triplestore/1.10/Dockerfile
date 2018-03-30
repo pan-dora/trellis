@@ -17,12 +17,12 @@ ENV TRELLIS_RUNTIME /opt
 ENV TRELLIS_DIST=${TRELLIS_SNAPSHOT}.tar
 
 ENV JVM_BASE /usr/lib/jvm
-ENV JDK_JAVA_OPTIONS="-Xms250m -Xmx1024m"
 ENV JDK_SPEC 10
 ENV JDK_VERSION 10
 ENV JAVA_HOME ${JVM_BASE}/jdk-${JDK_VERSION}
 ENV JDK_ARCHIVE openjdk-${JDK_VERSION}_linux-x64_bin.tar.gz
 ENV PATH ${JAVA_HOME}/bin:$PATH
+ENV JDK_JAVA_OPTIONS="-Xms250m -Xmx1024m"
 
 RUN apt-get update && \
     apt-get -y install \
@@ -58,7 +58,8 @@ RUN mkdir -p ${TRELLIS_RUNTIME} && \
 
 WORKDIR ${TRELLIS_RUNTIME}/trellis
 COPY etc etc
-RUN mkdir /var/lib/trellis && \
+RUN /usr/lib/jvm/jdk-10/bin/keytool -cacerts -storepass changeit -noprompt -import -alias fuseki -file /opt/trellis/etc/fuseki.cer && \
+    mkdir /var/lib/trellis && \
     mkdir /mnt/binaries
 COPY entrypoint.sh /entrypoint.sh
 COPY trellis-app /opt/trellis/bin/trellis-app

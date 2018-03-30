@@ -10,7 +10,7 @@ This provides composite deployments for Trellis application modules.
 
 [`trellis-app-triplestore`](https://github.com/trellis-ldp/trellis-deployment/tree/master/trellis-compose/trellis-app-triplestore)  - Provides the Trellis Application configured with an external Triplestore and Kafka Notification System.
 
-* 1.8 (Stable 0.6.0 Release Build)
+* 1.8 (Stable 0.6.1 Release Build)
 
 [![](https://images.microbadger.com/badges/image/trellisldp/trellis-app-8-ts:0.6.0.svg)](https://microbadger.com/images/trellisldp/trellis-app-8-ts "trellisldp/trellis-app-8-ts")[![](https://images.microbadger.com/badges/version/trellisldp/trellis-app-8-ts.svg)](https://microbadger.com/images/trellisldp/trellis-app-8-ts "trellisldp/trellis-app-8-ts")
 
@@ -54,6 +54,9 @@ To persist data, create these mount points before running docker-compose:
 ## JDK
 * the trellis-app is compiled for 1.8, 1.10.  
 * the 10 build use an experimental [JPMS branch](https://github.com/trellis-ldp/trellis/tree/jpms)
+
+## External Triplestore
+* Jena Fuseki 3.4.0 in Tomcat 9 with HTTP/2 over TLS 
 
 ## HTTP/2 over TLS
 * a development keystore `trellis.jks` is included in `trellis-app/etc`

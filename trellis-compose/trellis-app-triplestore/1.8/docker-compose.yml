@@ -53,7 +53,7 @@ services:
       - kafka-data-volume:/kafka
 
   trellis:
-    image: trellisldp/trellis-app-8-ts:0.6.0
+    image: trellisldp/trellis-app-8-ts:0.6.1
     container_name: trellis
     restart: always
     ports:
@@ -64,13 +64,14 @@ services:
       - trellis-binary-volume:/mnt/binaries
 
   fuseki:
-    image: trellisldp/fuseki:3.5.0
+    image: trellisldp/fuseki:3.4.0
     container_name: fuseki
     restart: always
     environment:
         CATALINA_OPTS: -Xmx8G -Xss8M
     ports:
       - "3030:3030"
+      - "8443:8443"
     volumes:
       - triplestore-data-volume:/shared/fuseki-data/trellis_data
       - triplestore-backup-volume:/shared/fuseki-data/backups

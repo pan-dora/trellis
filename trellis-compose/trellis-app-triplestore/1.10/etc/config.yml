@@ -27,12 +27,12 @@ logging:
 
 binaries: /mnt/binaries
 
-resources: http://fuseki:3030/fuseki/trellis
+resources: https://fuseki:8443/fuseki/trellis
 #resources: /var/lib/trellis/resources
 
 mementos: /var/lib/trellis/mementos
 
-baseUrl: https://localhost:8445/
+#baseUrl: https://localhost:8445/
 
 namespaces: /opt/trellis/etc/namespaces.json
 
