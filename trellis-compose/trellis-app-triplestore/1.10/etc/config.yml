@@ -28,7 +28,12 @@ logging:
 binaries: /mnt/binaries
 
 resources: https://fuseki:8443/fuseki/trellis
+
+# FILESYSTEM
 #resources: /var/lib/trellis/resources
+
+# JETTY LOCALHOST
+#resources: http://dockerhost:8900/fuseki/trellis
 
 mementos: /var/lib/trellis/mementos
 
