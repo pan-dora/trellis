@@ -7,13 +7,8 @@ RUN apt-get update && \
     apt-get -y install \
     curl
 
-RUN export GCSFUSE_REPO=gcsfuse-xenial && \
-    echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | tee /etc/apt/sources.list.d/gcsfuse.list
-
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-
-ENV TRELLIS_RELEASE trellis-0.6.1
-ENV TRELLIS_APP_RELEASE trellis-app-0.6.1
+ENV TRELLIS_RELEASE trellis-0.6.2
+ENV TRELLIS_APP_RELEASE trellis-app-0.6.2
 ENV ALPN_BOOT alpn-boot-8.1.12.v20180117.jar
 ENV TRELLIS_RUNTIME /opt
 ENV TRELLIS_DIST=${TRELLIS_APP_RELEASE}.tar
@@ -32,7 +27,6 @@ RUN apt-get update && \
     bash \
     nano \
     net-tools \
-    gcsfuse \
     wget && \
     apt-get clean autoclean -y && \
     apt-get autoremove -y && \

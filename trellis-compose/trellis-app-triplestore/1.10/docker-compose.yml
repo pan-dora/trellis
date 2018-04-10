@@ -64,7 +64,7 @@ services:
       - trellis-binary-volume:/mnt/binaries
 
   fuseki:
-    image: trellisldp/fuseki:3.4.0
+    image: trellisldp/fuseki:3.7.0
     container_name: fuseki
     restart: always
     environment:
@@ -74,7 +74,7 @@ services:
       - "8443:8443"
     volumes:
       - triplestore-data-volume:/shared/fuseki-data/trellis_data
-#      - triplestore-backup-volume:/shared/fuseki-data/backups
+      - triplestore-backup-volume:/shared/fuseki-data/backups
 
 volumes:
   trellis-binary-volume:
@@ -92,8 +92,8 @@ volumes:
       type: none
       device: /mnt/fuseki-data
       o: bind
- # triplestore-backup-volume:
-  #  driver_opts:
-   #   type: none
-  #    device: /mnt/fuseki-backup
-   #   o: bind
+  triplestore-backup-volume:
+    driver_opts:
+      type: none
+      device: /mnt/fuseki-backup
+      o: bind

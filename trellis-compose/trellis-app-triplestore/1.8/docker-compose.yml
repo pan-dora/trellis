@@ -53,7 +53,7 @@ services:
       - kafka-data-volume:/kafka
 
   trellis:
-    image: trellisldp/trellis-app-8-ts:0.6.1
+    image: trellisldp/trellis-app-8-ts:0.6.2
     container_name: trellis
     restart: always
     ports:
@@ -64,7 +64,7 @@ services:
       - trellis-binary-volume:/mnt/binaries
 
   fuseki:
-    image: trellisldp/fuseki:3.4.0
+    image: trellisldp/fuseki:3.7.0
     container_name: fuseki
     restart: always
     environment:
