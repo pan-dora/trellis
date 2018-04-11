@@ -97,3 +97,4 @@ volumes:
       type: none
       device: /mnt/fuseki-backup
       o: bind
+

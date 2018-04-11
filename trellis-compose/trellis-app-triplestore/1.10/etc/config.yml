@@ -27,7 +27,7 @@ logging:
 
 binaries: /mnt/binaries
 
-resources: https://fuseki:8443/fuseki/trellis
+resources: http://fuseki:3030/fuseki/trellis
 
 # FILESYSTEM
 #resources: /var/lib/trellis/resources

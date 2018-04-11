@@ -7,11 +7,6 @@ RUN apt-get update && \
     apt-get -y install \
     curl
 
-RUN export GCSFUSE_REPO=gcsfuse-xenial && \
-    echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | tee /etc/apt/sources.list.d/gcsfuse.list
-
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-
 ENV TRELLIS_SNAPSHOT trellis-app-0.7.0-SNAPSHOT
 ENV TRELLIS_RUNTIME /opt
 ENV TRELLIS_DIST=${TRELLIS_SNAPSHOT}.tar
@@ -30,8 +25,7 @@ RUN apt-get update && \
     git \
     bash \
     nano \
-    net-tools \
-    gcsfuse && \
+    net-tools && \
     apt-get clean autoclean -y && \
     apt-get autoremove -y && \
     mkdir ${JVM_BASE} && \
