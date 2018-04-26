@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get -y install \
     curl
 
-ENV TRELLIS_SNAPSHOT trellis-app-0.7.0-SNAPSHOT
+ENV TRELLIS_SNAPSHOT trellis-0.7.0-SNAPSHOT
 ENV TRELLIS_RUNTIME /opt
 ENV TRELLIS_DIST=${TRELLIS_SNAPSHOT}.tar
 
@@ -56,7 +56,7 @@ RUN /usr/lib/jvm/jdk-10/bin/keytool -cacerts -storepass changeit -noprompt -impo
     mkdir /var/lib/trellis && \
     mkdir /mnt/binaries
 COPY entrypoint.sh /entrypoint.sh
-COPY trellis-app /opt/trellis/bin/trellis-app
+COPY trellis.sh /opt/trellis/bin/trellis.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "/opt/trellis/etc/config.yml" ]
