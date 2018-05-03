@@ -2,11 +2,10 @@ FROM tomcat:9-jre8-alpine
 
 ENV FUSEKI_VERSION 3.7.0
 ENV FUSEKI_BASE /shared/fuseki-data
-
 ENV DEBUG_PORT 5009
 
-# Copy server.xml
-COPY conf/* conf/
+# Copy configuration
+COPY ${FUSEKI_CONF}/* conf/
 
 EXPOSE 3030
 EXPOSE ${DEBUG_PORT}
