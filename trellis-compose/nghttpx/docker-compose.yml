@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  nghttpx:
+    image: ubleipzig/nghttpx:1.31.1
+    container_name: nghttpx
+    environment:
+      KEY_FILE: /etc/nghttpx/ssl/ca.key
+      CERT_FILE: /etc/nghttpx/ssl/ca.crt
+    ports:
+      - "8444:8444"
+    volumes:
+      - ./etc:/etc
+    networks:
+      - fuseki370_default
+
+networks:
+  fuseki370_default:
+    external: true
