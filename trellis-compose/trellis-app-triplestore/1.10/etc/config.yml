@@ -2,12 +2,8 @@ server:
   applicationConnectors:
     - type: http
       port: 8080
-    - type: h2
+    - type: h2c
       port: 8445
-      keyStorePath: /opt/trellis/etc/trellis.jks
-      keyStorePassword: "changeme"
-      validateCerts: false
-      validatePeers: false
   requestLog:
     appenders:
       - type: file
@@ -27,7 +23,7 @@ logging:
 
 binaries: /mnt/binaries
 
-resources: http://fuseki:3030/fuseki/trellis
+resources: http://fuseki:8080/fuseki/trellis
 
 # FILESYSTEM
 #resources: /var/lib/trellis/resources

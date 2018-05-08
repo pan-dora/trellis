@@ -51,9 +51,8 @@ RUN mkdir -p ${TRELLIS_RUNTIME} && \
     rm -rf /tmp/${TRELLIS_DIST}*
 
 WORKDIR ${TRELLIS_RUNTIME}/trellis
-COPY etc etc
-RUN /usr/lib/jvm/jdk-10/bin/keytool -cacerts -storepass changeit -noprompt -import -alias fuseki -file /opt/trellis/etc/fuseki.cer && \
-    mkdir /var/lib/trellis && \
+
+RUN mkdir /var/lib/trellis && \
     mkdir /mnt/binaries
 COPY entrypoint.sh /entrypoint.sh
 COPY trellis.sh /opt/trellis/bin/trellis.sh

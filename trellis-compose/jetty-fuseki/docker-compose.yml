@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  jetty-fuseki:
+    image: trellisldp/jetty-fuseki:3.7.0
+    container_name: jetty-fuseki
+    restart: always
+    environment:
+        JAVA_OPTIONS: -Xmx8G -Xss8M
+    ports:
+      - "3030:8080"
+    volumes:
+      - triplestore-data-volume:/etc/fuseki/databases/trellis_data
+      - triplestore-backup-volume:/etc/fuseki/backups
+      - ./fuseki-conf/trellis.ttl:/etc/fuseki/configuration/trellis.ttl
+      - ./fuseki-conf/shiro.ini:/etc/fuseki/shiro.ini
+      - ./fuseki-conf/log4j.properties:/etc/fuseki/log4j.properties
+
+volumes:
+  triplestore-data-volume:
+    driver_opts:
+      type: none
+      device: /mnt/fuseki-data
+      o: bind
+  triplestore-backup-volume:
+    driver_opts:
+      type: none
+      device: /mnt/fuseki-backup
+      o: bind

@@ -8,12 +8,13 @@ services:
       KEY_FILE: /etc/nghttpx/ssl/ca.key
       CERT_FILE: /etc/nghttpx/ssl/ca.crt
     ports:
+      - "8000:8000"
       - "8444:8444"
     volumes:
       - ./etc:/etc
     networks:
-      - fuseki370_default
+      - 110_default
 
 networks:
-  fuseki370_default:
+  110_default:
     external: true
