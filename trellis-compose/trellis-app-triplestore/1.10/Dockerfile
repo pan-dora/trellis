@@ -7,6 +7,7 @@ RUN apt-get update && \
     apt-get -y install \
     curl
 
+ENV TRELLIS_RELEASE trellis-jpms-0.7.0
 ENV TRELLIS_SNAPSHOT trellis-0.7.0-SNAPSHOT
 ENV TRELLIS_RUNTIME /opt
 ENV TRELLIS_DIST=${TRELLIS_SNAPSHOT}.tar
@@ -42,7 +43,7 @@ RUN apt-get update && \
     wget https://www.amazontrust.com/repository/AmazonRootCA4.pem && \
     keytool -import -alias amazon4 -storepass changeit -noprompt -keystore ${JAVA_HOME}/lib/security/cacerts -file AmazonRootCA4.pem
 
-COPY ${TRELLIS_DIST} /tmp/${TRELLIS_DIST}
+RUN wget -O /tmp/${TRELLIS_DIST} https://github.com/christopher-johnson/trellis/releases/download/${TRELLIS_RELEASE}/${TRELLIS_DIST}
 
 RUN mkdir -p ${TRELLIS_RUNTIME} && \
     cd ${TRELLIS_RUNTIME} && \
