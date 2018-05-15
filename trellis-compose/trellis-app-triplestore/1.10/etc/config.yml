@@ -76,3 +76,9 @@ jsonld:
     contextWhitelist: []
     contextDomainWhitelist: []
 
+assets:
+    js:
+        - "https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js"
+        - "http://localhost:8080/table.js"
+    css:
+        - "http://localhost:8080/trellis.css"

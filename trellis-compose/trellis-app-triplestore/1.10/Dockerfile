@@ -44,6 +44,7 @@ RUN apt-get update && \
     keytool -import -alias amazon4 -storepass changeit -noprompt -keystore ${JAVA_HOME}/lib/security/cacerts -file AmazonRootCA4.pem
 
 RUN wget -O /tmp/${TRELLIS_DIST} https://github.com/christopher-johnson/trellis/releases/download/${TRELLIS_RELEASE}/${TRELLIS_DIST}
+#COPY ${TRELLIS_DIST} /tmp/${TRELLIS_DIST}
 
 RUN mkdir -p ${TRELLIS_RUNTIME} && \
     cd ${TRELLIS_RUNTIME} && \
