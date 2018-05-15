@@ -1,31 +1,32 @@
-FROM ubuntu:16.04
-ENV KAFKA_USER=kafka \
-KAFKA_DATA_DIR=/var/lib/kafka/data \
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
-KAFKA_HOME=/opt/kafka \
-PATH=$PATH:/opt/kafka/bin
+FROM openjdk:8u151-jre-alpine
 
-ARG KAFKA_VERSION=0.11.0.2
-ARG KAFKA_DIST=kafka_2.11-0.11.0.2
-RUN set -x \
-    && apt-get update \
-    && apt-get install -y openjdk-8-jre-headless wget \
-	&& wget -q "http://www.apache.org/dist/kafka/$KAFKA_VERSION/$KAFKA_DIST.tgz" \
-    && wget -q "http://www.apache.org/dist/kafka/$KAFKA_VERSION/$KAFKA_DIST.tgz.asc" \
-    && wget -q "http://kafka.apache.org/KEYS" \
-    && export GNUPGHOME="$(mktemp -d)" \
-    && gpg --import KEYS \
-    && gpg --batch --verify "$KAFKA_DIST.tgz.asc" "$KAFKA_DIST.tgz" \
-    && tar -xzf "$KAFKA_DIST.tgz" -C /opt \
-    && rm -r "$GNUPGHOME" "$KAFKA_DIST.tgz" "$KAFKA_DIST.tgz.asc"
+ARG kafka_version=1.1.0
+ARG scala_version=2.12
+ARG glibc_version=2.27-r0
 
-COPY log4j.properties /opt/$KAFKA_DIST/config/
+ENV KAFKA_VERSION=$kafka_version \
+    SCALA_VERSION=$scala_version \
+    KAFKA_HOME=/opt/kafka \
+    GLIBC_VERSION=$glibc_version
 
-RUN set -x \
-    && ln -s /opt/$KAFKA_DIST $KAFKA_HOME \
-    && useradd $KAFKA_USER \
-    && [ `id -u $KAFKA_USER` -eq 1000 ] \
-    && [ `id -g $KAFKA_USER` -eq 1000 ] \
-    && mkdir -p $KAFKA_DATA_DIR \
-    && chown -R "$KAFKA_USER:$KAFKA_USER"  /opt/$KAFKA_DIST \
-    && chown -R "$KAFKA_USER:$KAFKA_USER"  $KAFKA_DATA_DIR
+ENV PATH=${PATH}:${KAFKA_HOME}/bin
+
+COPY download-kafka.sh start-kafka.sh broker-list.sh /tmp/
+
+RUN apk add --no-cache bash curl jq docker \
+ && mkdir /opt \
+ && chmod a+x /tmp/*.sh \
+ && mv /tmp/start-kafka.sh /tmp/broker-list.sh /usr/bin \
+ && sync && /tmp/download-kafka.sh \
+ && tar xfz /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt \
+ && rm /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz \
+ && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka \
+ && rm /tmp/* \
+ && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk \
+ && apk add --no-cache --allow-untrusted glibc-${GLIBC_VERSION}.apk \
+ && rm glibc-${GLIBC_VERSION}.apk
+
+VOLUME ["/kafka"]
+
+# Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
+CMD ["start-kafka.sh"]

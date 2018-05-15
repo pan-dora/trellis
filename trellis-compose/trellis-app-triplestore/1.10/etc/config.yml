@@ -11,7 +11,7 @@ server:
         archive: true
         archivedLogFilenamePattern: /opt/trellis/log/access-%i.log
         archivedFileCount: 5
-        maxFileSize: 100K
+        maxFileSize: 2m
 
 logging:
   level: DEBUG
@@ -22,7 +22,7 @@ logging:
       archive: true
       archivedLogFilenamePattern: /opt/trellis/log/trellis-%i.log
       archivedFileCount: 5
-      maxFileSize: 100K
+      maxFileSize: 2m
   loggers:
     org.trellisldp: DEBUG
     io.dropwizard: DEBUG

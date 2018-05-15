@@ -34,18 +34,17 @@ services:
         ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2182 server.3=zoo3:2888:3888;2183
 
   kafka:
-    image: trellisldp/kafka:1.0.0
+    image: trellisldp/kafka:1.1.0
     ports:
         - "9094:9094"
         - "1099:1099"
     environment:
       HOSTNAME_COMMAND: "ifconfig|grep inet|head -1|sed 's/\\:/ /'|awk '{print $$3}'"
       KAFKA_ZOOKEEPER_CONNECT: zoo1:2181
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://_{HOSTNAME_COMMAND}:9094
+      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_ADVERTISED_PROTOCOL_NAME: OUTSIDE
-      KAFKA_ADVERTISED_PORT: 9094
-      KAFKA_PROTOCOL_NAME: INSIDE
-      KAFKA_PORT: 9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
      # KAFKA_JMX_OPTS: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.rmi.port=1099"
      # JMX_PORT: 1099
       KAFKA_MESSAGE_MAX_BYTES: 5000000
