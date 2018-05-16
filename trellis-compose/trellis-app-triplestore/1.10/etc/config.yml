@@ -14,7 +14,7 @@ server:
         maxFileSize: 2m
 
 logging:
-  level: DEBUG
+  level: WARN
   appenders:
     - type: console
     - type: file
@@ -77,6 +77,7 @@ jsonld:
     contextDomainWhitelist: []
 
 assets:
+    template: org/trellisldp/rdfa/resource-table.mustache
     js:
         - "https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js"
         - "http://localhost:8080/table.js"

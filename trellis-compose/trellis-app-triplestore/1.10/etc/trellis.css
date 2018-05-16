@@ -1,5 +1,12 @@
-header, footer {
+header {
     background-color: #24292e;
+    color: white;
+    font-size: .9em;
+    text-align: center;
+}
+
+footer {
+    background-color: white;
     color: white;
     font-size: .9em;
     text-align: center;

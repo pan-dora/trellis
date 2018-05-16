@@ -52,7 +52,7 @@ services:
       - kafka-data-volume:/kafka
 
   trellis:
-    image: trellisldp/jpms.app.triplestore.4:0.7.0
+    image: trellisldp/jpms.app.triplestore.5:0.7.0
     container_name: trellis
     restart: always
     ports:
